@@ -1,0 +1,42 @@
+import pepe.*
+import bonos.*
+import categorias.*
+
+describe "sueldo pepe" {
+	test "inicial 1 - monto fijo, falto 3 dias" {
+		pepe.setCategoria(cadete)
+		pepe.setBonoResultados(bonoMontoFijo)
+		pepe.setBonoPresentismo(bonoPresentismoNormal)
+		pepe.setCantidadDeFaltas(3)
+		
+		assert.equals(20000 + 800 + 0, pepe.sueldo())
+	}
+
+	test "inicial 2 - monto fijo, falto 3 dias" {
+		pepe.setCategoria(gerente)
+		pepe.setBonoResultados(bonoPorcentaje)
+		pepe.setBonoPresentismo(bonoNulo)
+		pepe.setCantidadDeFaltas(3)
+		
+		assert.equals(15000 + 1500 + 0, pepe.sueldo())
+	}
+
+	test "adicional 1 - una falta" {
+		pepe.setCategoria(cadete)
+		pepe.setBonoResultados(bonoPorcentaje)
+		pepe.setBonoPresentismo(bonoPresentismoNormal)
+		pepe.setCantidadDeFaltas(1)
+		
+		assert.equals(20000 + 2000 + 1000, pepe.sueldo())
+	}
+
+	test "adicional 2 - sin faltas" {
+		pepe.setCategoria(cadete)
+		pepe.setBonoResultados(bonoPorcentaje)
+		pepe.setBonoPresentismo(bonoPresentismoNormal)
+		pepe.setCantidadDeFaltas(0)
+		
+		assert.equals(20000 + 2000 + 2000, pepe.sueldo())
+	}
+	
+}
