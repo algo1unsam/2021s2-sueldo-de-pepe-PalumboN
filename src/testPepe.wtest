@@ -8,13 +8,59 @@ describe "sueldo pepe" {
 		 * correspondientes en el objeto pepe. 
 		 * Descomentar las cuatro líneas que siguen para que el test funcione correctamente. 
 		 */
-//		pepe.setCategoria(cadete)
-//		pepe.setBonoResultado(bonoMontoFijo)
-//		pepe.setBonoPresentismo(bonoPresentismoNormal)
-//		pepe.setCantidadDeFaltas(3)
+		pepe.setCategoria(cadete)
+		pepe.setBonoResultado(bonoMontoFijo)
+		pepe.setBonoPresentismo(bonoPresentismoNormal)
+		pepe.setCantidadDeFaltas(3)
 		
 		assert.equals(20000 + 800 + 0, pepe.sueldo())
 	}
 
+test "pepe cadete con bono de resultados por porcentaje, bono por presentismo normal, nunca faltó. Debería tener $24000 de sueldo"
+// pongo categoria de pepe como cadete
+pepe.setCategoria(cadete)
+// pongo bono Resultado porcentaje
+pepe.setBonoResultado(bonoPorcentaje)
+// pongo presentismo normal
+pepe.setBonoPresentismo(bonoPresentismoNormal)
+// no hago nada con las faltas por default estan en 0
+assert.equals(24000,pepe.sueldo())
+
+test "pepe cadete con bono de resultados por porcentaje, bono por presentismo normal, falto 1 día. Debería tener $23000 de sueldo."
+// pongo a pepe en la categoria cadete
+pepe.setCategoria(cadete)
+// set el tipo de bono
+pepe.setBonoResultado(bonoPorcentaje)
+// set bono presentismo
+pepe.setBonoPresentismo(bonoPresentismoNormal)
+// set cantidad de faltas
+pepe.setCantidadDeFaltas(1)
+assert.equals(23000,pepe.sueldo())
+
+
+
+
+test "potpourri"
+//La categoría base de _medio tiempo_ es _cadete_.
+medioTiempo.categoriaBase(cadete)
+//Pepe tiene categoría medio tiempo (o sea, es cadete y trabaja medio tiempo), 
+pepe.setCategoria(cadete)
+pepe.setMedioTiempoTrue()
+//tiene bono por resultados de porcentaje, 
+pepe.setBonoResultado(bonoPorcentaje)
+//y bono por presentismo demagógico. 
+pepe.setBonoPresentismo(bonoDemagogico)
+//Hacer que falte una vez.
+pepe.setCantidadDeFaltas(1)
+assert.equals(11500,pepe.sueldo())
+//	- Roque tiene bono por resultados monto fijo. 
+roque.setBonoResultado(bonoMontoFijo)
+//	- Ernesto tiene como compañero a Pepe, y bono por presentismo de ajuste.
+ernesto.setCompaniero(pepe)
+ernesto.setBonoPresentismo(bonoAjuste)
+assert.equals(37800,roque.sueldo())
+assert.equals(10100,ernesto.sueldo())
+//	Verificar que el sueldo de Pepe es 11500, el de Roque es 37800, y el de Ernesto es 10100.
+	
 	
 }
