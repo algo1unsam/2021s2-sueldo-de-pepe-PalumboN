@@ -18,7 +18,7 @@ object cadete {
 }
 
 object vendedor {
-
+	const netoBase = 16000
 	var muchasVentas = false
 
 	method activarAumentoPorMuchasVentas() {
@@ -31,19 +31,23 @@ object vendedor {
 
 	method neto() {
 		if (muchasVentas) {
-			return 16000 * 1.25
+			return netoBase * 1.25
 		} else {
-			return 16000
+			return netoBase
 		}
 	}
 
 }
 
 object medioTiempo {
-
+	var categoriaBase
 
 	method categoriaBase(categoria) {
-		return categoria.neto() / 2
+		categoriaBase = categoria
+	}
+	
+	method neto() {
+		return categoriaBase.neto() / 2
 	}
 
 }

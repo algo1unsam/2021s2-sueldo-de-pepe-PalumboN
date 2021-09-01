@@ -7,7 +7,6 @@ object pepe {
 	var bonoPresentismo = bonoNulo // Normal, Ajuste, Demagogico
 	var bonoResultado = bonoNulo // Porcentaje, fijo
 	var cantidadDeFaltas = 0
-	var medioTiempoV = false
 
 	method cantidadDeFaltas() {
 		return cantidadDeFaltas
@@ -37,20 +36,9 @@ object pepe {
 		return bonoResultado.monto(self)
 	} // getter bonoResultado 
 
-	method setMedioTiempoTrue() {
-		medioTiempoV = true
-	}
-
-	method setMedioTiempoFalse() {
-		medioTiempoV = false
-	}
 
 	method sueldoNeto() {
-		if (medioTiempoV) {
-			return medioTiempo.categoriaBase(categoria)
-		} else {
-			return categoria.neto()
-		}
+		return categoria.neto()
 	}
 
 	method sueldo() {
@@ -66,38 +54,26 @@ object sofia {
 
 	var categoria = gerente // cadete
 	var bonoResultado = bonoNulo // Porcentaje, fijo
-	var medioTiempoV = false
+//	var medioTiempoV = false
 
 	method setCategoria(categoriaNueva) { // setter categoria
 		categoria = categoriaNueva
 	}
 
 	method sueldoNeto() {
-		if (medioTiempoV) {
-			return medioTiempo.categoriaBase(categoria) * 1.3
-		} else {
-			return categoria.neto() * 1.3
-		}
+		return categoria.neto() * 1.3
 	}
 
 	method setBonoResultado(cual) {
 		bonoResultado = cual
 	} // setter bonoResultado
 
-	method bonoResultado() {
+	method montoDeBonoResultado() {
 		return bonoResultado.monto(self)
-	} // getter bonoResultado 
+	} 
 
 	method sueldo() {
-		return self.sueldoNeto() + bonoResultado.monto(self)
-	}
-
-	method setMedioTiempoTrue() {
-		medioTiempoV = true
-	}
-
-	method setMedioTiempoFalse() {
-		medioTiempoV = false
+		return self.sueldoNeto() + self.montoDeBonoResultado()
 	}
 
 }
